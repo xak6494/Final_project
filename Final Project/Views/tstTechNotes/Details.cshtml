@@ -1,0 +1,50 @@
+﻿@model DataLayer.tstTechNote
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>tstTechNote</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Notation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Notation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NotationDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NotationDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tstEmployee.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tstEmployee.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tstTicket.TroubleDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tstTicket.TroubleDescription)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

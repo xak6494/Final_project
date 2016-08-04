@@ -1,0 +1,238 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TSTModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="tstDepartment">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="ISActive" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="tstEmployees" Relationship="Self.FK_tstEmployees_tstDepartments" FromRole="tstDepartments" ToRole="tstEmployees" />
+  </EntityType>
+  <EntityType Name="tstEmployee">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="25" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Lname" Type="String" MaxLength="25" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Hiredate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="UserID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="StatusID" Type="Int32" Nullable="false" />
+    <Property Name="Jobtitle" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Adress" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Adress2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="City" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="State" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
+    <Property Name="Zip" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="DepID" Type="Int32" Nullable="false" />
+    <Property Name="ImmageURL" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Dateofbirth" Type="DateTime" Precision="0" />
+    <Property Name="separationDate" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="tstDepartment" Relationship="Self.FK_tstEmployees_tstDepartments" FromRole="tstEmployees" ToRole="tstDepartments" />
+    <NavigationProperty Name="tstEmployeeStatu" Relationship="Self.FK_tstEmployees_tstEmployeeStatus" FromRole="tstEmployees" ToRole="tstEmployeeStatus" />
+    <NavigationProperty Name="tstTechNotes" Relationship="Self.FK_tstTechNotes_tstEmployees" FromRole="tstEmployees" ToRole="tstTechNotes" />
+    <NavigationProperty Name="tstTickets" Relationship="Self.FK_tstTickets_tstEmployees" FromRole="tstEmployees" ToRole="tstTickets" />
+    <NavigationProperty Name="tstTickets1" Relationship="Self.FK_tstTickets_tstEmployees1" FromRole="tstEmployees" ToRole="tstTickets" />
+  </EntityType>
+  <EntityType Name="tstEmployeeStatu">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tstEmployees" Relationship="Self.FK_tstEmployees_tstEmployeeStatus" FromRole="tstEmployeeStatus" ToRole="tstEmployees" />
+  </EntityType>
+  <EntityType Name="tstTechNote">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TechID" Type="Int32" Nullable="false" />
+    <Property Name="TicketID" Type="Int32" Nullable="false" />
+    <Property Name="Notation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="NotationDate" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="tstEmployee" Relationship="Self.FK_tstTechNotes_tstEmployees" FromRole="tstTechNotes" ToRole="tstEmployees" />
+    <NavigationProperty Name="tstTicket" Relationship="Self.FK_tstTechNotes_tstTickets" FromRole="tstTechNotes" ToRole="tstTickets" />
+  </EntityType>
+  <EntityType Name="tstTicketPriorty">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="25" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="200" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="tstTickets" Relationship="Self.FK_tstTickets_tstTicketPriorties" FromRole="tstTicketPriorties" ToRole="tstTickets" />
+  </EntityType>
+  <EntityType Name="tstTicket">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SubmitbyID" Type="Int32" Nullable="false" />
+    <Property Name="TechID" Type="Int32" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="ResoloutionDate" Type="DateTime" Precision="0" />
+    <Property Name="TroubleDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Screenshot" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+    <Property Name="StatusID" Type="Int32" Nullable="false" />
+    <Property Name="PriorityID" Type="Int32" Nullable="false" />
+    <Property Name="Subject" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="tstEmployee" Relationship="Self.FK_tstTickets_tstEmployees" FromRole="tstTickets" ToRole="tstEmployees" />
+    <NavigationProperty Name="tstEmployee1" Relationship="Self.FK_tstTickets_tstEmployees1" FromRole="tstTickets" ToRole="tstEmployees" />
+    <NavigationProperty Name="tstTechNotes" Relationship="Self.FK_tstTechNotes_tstTickets" FromRole="tstTickets" ToRole="tstTechNotes" />
+    <NavigationProperty Name="tstTicketPriorty" Relationship="Self.FK_tstTickets_tstTicketPriorties" FromRole="tstTickets" ToRole="tstTicketPriorties" />
+    <NavigationProperty Name="tstTicketStatu" Relationship="Self.FK_tstTickets_tstTicketStatus" FromRole="tstTickets" ToRole="tstTicketStatus" />
+  </EntityType>
+  <EntityType Name="tstTicketStatu">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="25" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="200" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="tstTickets" Relationship="Self.FK_tstTickets_tstTicketStatus" FromRole="tstTicketStatus" ToRole="tstTickets" />
+  </EntityType>
+  <Association Name="FK_tstEmployees_tstDepartments">
+    <End Role="tstDepartments" Type="Self.tstDepartment" Multiplicity="1" />
+    <End Role="tstEmployees" Type="Self.tstEmployee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tstDepartments">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tstEmployees">
+        <PropertyRef Name="DepID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tstEmployees_tstEmployeeStatus">
+    <End Role="tstEmployeeStatus" Type="Self.tstEmployeeStatu" Multiplicity="1" />
+    <End Role="tstEmployees" Type="Self.tstEmployee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tstEmployeeStatus">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tstEmployees">
+        <PropertyRef Name="StatusID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tstTechNotes_tstEmployees">
+    <End Role="tstEmployees" Type="Self.tstEmployee" Multiplicity="1" />
+    <End Role="tstTechNotes" Type="Self.tstTechNote" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tstEmployees">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tstTechNotes">
+        <PropertyRef Name="TechID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tstTickets_tstEmployees">
+    <End Role="tstEmployees" Type="Self.tstEmployee" Multiplicity="1" />
+    <End Role="tstTickets" Type="Self.tstTicket" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tstEmployees">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tstTickets">
+        <PropertyRef Name="SubmitbyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tstTickets_tstEmployees1">
+    <End Role="tstEmployees" Type="Self.tstEmployee" Multiplicity="0..1" />
+    <End Role="tstTickets" Type="Self.tstTicket" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tstEmployees">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tstTickets">
+        <PropertyRef Name="TechID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tstTechNotes_tstTickets">
+    <End Role="tstTickets" Type="Self.tstTicket" Multiplicity="1" />
+    <End Role="tstTechNotes" Type="Self.tstTechNote" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tstTickets">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tstTechNotes">
+        <PropertyRef Name="TicketID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tstTickets_tstTicketPriorties">
+    <End Role="tstTicketPriorties" Type="Self.tstTicketPriorty" Multiplicity="1" />
+    <End Role="tstTickets" Type="Self.tstTicket" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tstTicketPriorties">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tstTickets">
+        <PropertyRef Name="PriorityID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tstTickets_tstTicketStatus">
+    <End Role="tstTicketStatus" Type="Self.tstTicketStatu" Multiplicity="1" />
+    <End Role="tstTickets" Type="Self.tstTicket" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tstTicketStatus">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tstTickets">
+        <PropertyRef Name="StatusID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="TSTEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="tstDepartments" EntityType="Self.tstDepartment" />
+    <EntitySet Name="tstEmployees" EntityType="Self.tstEmployee" />
+    <EntitySet Name="tstEmployeeStatus" EntityType="Self.tstEmployeeStatu" />
+    <EntitySet Name="tstTechNotes" EntityType="Self.tstTechNote" />
+    <EntitySet Name="tstTicketPriorties" EntityType="Self.tstTicketPriorty" />
+    <EntitySet Name="tstTickets" EntityType="Self.tstTicket" />
+    <EntitySet Name="tstTicketStatus" EntityType="Self.tstTicketStatu" />
+    <AssociationSet Name="FK_tstEmployees_tstDepartments" Association="Self.FK_tstEmployees_tstDepartments">
+      <End Role="tstDepartments" EntitySet="tstDepartments" />
+      <End Role="tstEmployees" EntitySet="tstEmployees" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tstEmployees_tstEmployeeStatus" Association="Self.FK_tstEmployees_tstEmployeeStatus">
+      <End Role="tstEmployeeStatus" EntitySet="tstEmployeeStatus" />
+      <End Role="tstEmployees" EntitySet="tstEmployees" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tstTechNotes_tstEmployees" Association="Self.FK_tstTechNotes_tstEmployees">
+      <End Role="tstEmployees" EntitySet="tstEmployees" />
+      <End Role="tstTechNotes" EntitySet="tstTechNotes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tstTickets_tstEmployees" Association="Self.FK_tstTickets_tstEmployees">
+      <End Role="tstEmployees" EntitySet="tstEmployees" />
+      <End Role="tstTickets" EntitySet="tstTickets" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tstTickets_tstEmployees1" Association="Self.FK_tstTickets_tstEmployees1">
+      <End Role="tstEmployees" EntitySet="tstEmployees" />
+      <End Role="tstTickets" EntitySet="tstTickets" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tstTechNotes_tstTickets" Association="Self.FK_tstTechNotes_tstTickets">
+      <End Role="tstTickets" EntitySet="tstTickets" />
+      <End Role="tstTechNotes" EntitySet="tstTechNotes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tstTickets_tstTicketPriorties" Association="Self.FK_tstTickets_tstTicketPriorties">
+      <End Role="tstTicketPriorties" EntitySet="tstTicketPriorties" />
+      <End Role="tstTickets" EntitySet="tstTickets" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tstTickets_tstTicketStatus" Association="Self.FK_tstTickets_tstTicketStatus">
+      <End Role="tstTicketStatus" EntitySet="tstTicketStatus" />
+      <End Role="tstTickets" EntitySet="tstTickets" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

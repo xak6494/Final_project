@@ -1,0 +1,56 @@
+﻿@model DataLayer.tstTechNote
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>tstTechNote</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Notation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Notation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NotationDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NotationDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tstEmployee.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tstEmployee.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tstTicket.TroubleDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tstTicket.TroubleDescription)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

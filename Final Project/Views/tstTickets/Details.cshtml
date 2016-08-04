@@ -1,0 +1,90 @@
+﻿@model DataLayer.tstTicket
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>tstTicket</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ResoloutionDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ResoloutionDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TroubleDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TroubleDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Screenshot)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Screenshot)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Subject)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Subject)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tstEmployee.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tstEmployee.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tstEmployee1.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tstEmployee1.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tstTicketPriorty.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tstTicketPriorty.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tstTicketStatu.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tstTicketStatu.Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
